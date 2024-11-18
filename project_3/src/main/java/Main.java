@@ -3,39 +3,39 @@ import news_accessor.NewsRequester;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- * Main class for demonstrating the parsing of news articles from both local files and a News API.
+ * The Main class demonstrates the parsing of news articles from both local files and a News API.
+ * It sets up logging configurations and orchestrates the parsing and displaying of news articles.
  */
 public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     /**
-     * Configures the logger with a file handler and formatter to record logging information.
-     * Log messages are recorded in a file named "main-parser-log.log" and not printed to the console.
+     * Configures the logger to output to a file, which allows for persistent storage of log messages.
+     * The log file "main-parser-log.log" will accumulate messages over time without printing them to the console.
      */
     private static void setupLogger() {
         try {
             FileHandler fileHandler = new FileHandler("main-parser-log.log", true); // Append mode
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
-            logger.setUseParentHandlers(false); // Do not log to console
+            logger.setUseParentHandlers(false); // Prevents logging to console
         } catch (SecurityException | IOException e) {
             logger.severe("Failed to setup logger handler: " + e.getMessage());
         }
     }
 
     /**
-     * Fetches and prints results from the News API based on the specified parameters.
-     * If the request is successful, the response is parsed and printed.
+     * Retrieves news content from a remote News API based on the specified search parameters.
+     * If the API request is successful, it constructs a NewsForParse object with the response.
      *
-     * @param params the parameters for querying the News API
+     * @param params the parameters for querying the News API.
+     * @return a NewsForParse object with the API response, or null if the request fails.
      */
     private static NewsForParse getFromNewsAPI(String params) {
         NewsRequester newsRequester = new NewsRequester(logger);
@@ -48,19 +48,21 @@ public class Main {
     }
 
     /**
-     * Reads the entire contents of a file into a string.
-     * @param file the file to read
-     * @return a string containing the contents of the file
+     * Reads the entire contents of a file and creates a NewsForParse object with the content.
+     *
+     * @param file the file from which the news content is to be read.
+     * @param format the format of the news content, e.g., JSON or XML.
+     * @return a NewsForParse object containing the content from the file.
      */
     private static NewsForParse getFromFile(File file, NewsFormat format){
         return new NewsForParse(NewsSource.FILE, format, NewsForParse.getStringFromFile(file, logger));
     }
 
     /**
-     * Parses articles from a file and prints the results.
-     * This method reads a JSON file specified by fileName, parses its content, and prints each article.
+     * Parses articles from provided NewsForParse object and prints the resulting articles.
+     * It employs a NewsJsonParser to parse the content and prints each parsed article.
      *
-     * @param fileName the path to the JSON file containing the articles
+     * @param news NewsForParse object containing the content to parse.
      */
     private static void printParseResults(NewsForParse news){
         NewsJsonParser parser = new NewsJsonParser(logger);
@@ -74,10 +76,10 @@ public class Main {
     }
 
     /**
-     * The entry point of the application.
-     * This method sets up the logger, then parses and prints articles from several JSON sources.
+     * The main entry point of the application. Initializes logging, reads content from specified files and APIs,
+     * parses them, and prints the results.
      *
-     * @param args the command-line arguments (not used)
+     * @param args the command-line arguments, currently not used.
      */
     public static void main(String[] args){
         setupLogger();
@@ -96,6 +98,5 @@ public class Main {
 
         System.out.println("\nArticles parsed from 'simple.json':");
         printParseResults(getFromFile(new File("inputs/simple.json"), NewsFormat.NEWS_API));
-
     }
 }

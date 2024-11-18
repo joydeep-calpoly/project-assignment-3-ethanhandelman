@@ -15,7 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * A utility class that parses JSON formatted news data into structured article objects.
+ * A utility class for parsing JSON formatted news data into structured article objects using the Jackson library.
+ * This parser is designed to work with a specific JSON structure expected in the news data and populates an ArticleStorage instance.
  */
 public class NewsJsonParser implements NewsVisitor {
     private final Logger logger;
@@ -23,21 +24,23 @@ public class NewsJsonParser implements NewsVisitor {
     private ArticleStorage articleStorage;
 
     /**
-     * Constructs a NewsJsonParser with a string source.
-     * @param logger the Logger to log parsing events and errors
-     * @param toParse the String containing the JSON data to be parsed
+     * Constructs a NewsJsonParser with a specified logger.
+     * This constructor initializes the parser and sets up the logging framework used to log parsing events and errors.
+     *
+     * @param logger the Logger instance to log parsing events and errors.
      */
     public NewsJsonParser(Logger logger){
         this.logger = logger;
         parsingComplete = false;
     }
 
-
-
     /**
-     * Parses the JSON data into ArticleStorage which holds the articles.
-     * It configures the ObjectMapper to ignore unknown or ignored properties to prevent parsing errors.
-     * @return true if the parsing completes successfully, false otherwise
+     * Parses the JSON data provided by the NewsForParse object into an ArticleStorage instance.
+     * This method configures the ObjectMapper to be lenient with ignored and unknown properties to avoid parsing errors.
+     * The parsing process captures and logs errors without throwing exceptions, allowing the parsing process to be robust.
+     *
+     * @param news the NewsForParse object containing the JSON data to be parsed.
+     * @return true if the parsing completes successfully, false otherwise.
      */
     public boolean parseArticles(NewsForParse news) {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -55,9 +58,11 @@ public class NewsJsonParser implements NewsVisitor {
     }
 
     /**
-     * Returns a list of articles parsed from the JSON data.
-     * If the parsing has not been completed or was unsuccessful, returns an empty list.
-     * @return a list of articles or an empty list if parsing was not completed
+     * Retrieves a list of articles that have been successfully parsed from the JSON data.
+     * If the parsing has not been completed or was unsuccessful, this method returns an empty list.
+     * This ensures that the method can be safely called without checking parsing status first.
+     *
+     * @return a list of Article objects if parsing was successful, or an empty list if parsing was not completed or failed.
      */
     public List<Article> getArticles(){
         if(parsingComplete){
