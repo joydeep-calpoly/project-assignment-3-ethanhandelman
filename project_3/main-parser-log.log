@@ -1,0 +1,76 @@
+Nov 17, 2024 12:42:41 PM article_parser.NewsJsonParser getStringFromFile
+SEVERE: Exception occurred while trying to read file: 
+java.nio.file.NoSuchFileException: inputs\example.json
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:234)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3268)
+	at article_parser.NewsJsonParser.getStringFromFile(NewsJsonParser.java:55)
+	at article_parser.NewsJsonParser.<init>(NewsJsonParser.java:33)
+	at Main.printParseResults(Main.java:63)
+	at Main.main(Main.java:83)
+
+Nov 17, 2024 12:42:43 PM article_parser.NewsJsonParser parseArticles
+WARNING: JsonMappingException occurred while parsing: 
+com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4688)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4586)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3548)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3516)
+	at article_parser.NewsJsonParser.parseArticles(NewsJsonParser.java:72)
+	at Main.printParseResults(Main.java:65)
+	at Main.main(Main.java:83)
+
+Nov 17, 2024 12:42:43 PM article_parser.NewsJsonParser getStringFromFile
+SEVERE: Exception occurred while trying to read file: 
+java.nio.file.NoSuchFileException: inputs\bad.json
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:234)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3268)
+	at article_parser.NewsJsonParser.getStringFromFile(NewsJsonParser.java:55)
+	at article_parser.NewsJsonParser.<init>(NewsJsonParser.java:33)
+	at Main.printParseResults(Main.java:63)
+	at Main.main(Main.java:86)
+
+Nov 17, 2024 12:42:43 PM article_parser.NewsJsonParser parseArticles
+WARNING: JsonMappingException occurred while parsing: 
+com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.fasterxml.jackson.databind.exc.MismatchedInputException.from(MismatchedInputException.java:59)
+	at com.fasterxml.jackson.databind.ObjectMapper._initForReading(ObjectMapper.java:4688)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4586)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3548)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3516)
+	at article_parser.NewsJsonParser.parseArticles(NewsJsonParser.java:72)
+	at Main.printParseResults(Main.java:65)
+	at Main.main(Main.java:86)
+
+Nov 17, 2024 12:43:33 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 10 article(s) due to incomplete fields.
+Nov 17, 2024 12:43:33 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 13 article(s) due to incomplete fields.
+Nov 17, 2024 12:45:02 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 10 article(s) due to incomplete fields.
+Nov 17, 2024 12:45:02 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 13 article(s) due to incomplete fields.
+Nov 17, 2024 12:45:05 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 12 article(s) due to incomplete fields.
+Nov 17, 2024 12:45:06 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 10 article(s) due to incomplete fields.
+Nov 17, 2024 11:07:59 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 10 article(s) due to incomplete fields.
+Nov 17, 2024 11:07:59 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 13 article(s) due to incomplete fields.
+Nov 17, 2024 11:08:02 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 11 article(s) due to incomplete fields.
+Nov 17, 2024 11:08:02 PM article_parser.FullArticleStorage getArticles
+WARNING: Removed 10 article(s) due to incomplete fields.
